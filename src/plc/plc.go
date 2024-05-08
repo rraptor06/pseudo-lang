@@ -1,8 +1,14 @@
 package plc
 
-import "pseudo-lang/parsing"
+import (
+	"fmt"
+	"pseudo-lang/parsing"
+)
 
 func Compiler(argv []string) int {
-	parsing.DisplayHelp()
-	return 1
+	if parsing.ParseArgs(argv) == 1 {
+		return 1
+	}
+	fmt.Print(parsing.GetSettings())
+	return 0
 }
