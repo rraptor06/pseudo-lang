@@ -2,11 +2,11 @@ package parsing
 
 // settingsStruct The structure containing the settings of the program
 type settingsStruct struct {
-	fileList    []string
-	convertOnly bool
-	outputDir   string
-	executable  string
-	run         bool
+	FilesList   []string
+	ConvertOnly bool
+	OutputDir   string
+	Executable  string
+	Run         bool
 }
 
 // settings The settings of the program
@@ -18,10 +18,11 @@ var settings *settingsStruct
 func GetSettings() *settingsStruct {
 	if settings == nil {
 		settings = &settingsStruct{
-			convertOnly: false,
-			outputDir:   "",
-			executable:  "main.out",
-			run:         false,
+			FilesList:   []string{},
+			ConvertOnly: false,
+			OutputDir:   "",
+			Executable:  "main.out",
+			Run:         false,
 		}
 	}
 	return settings

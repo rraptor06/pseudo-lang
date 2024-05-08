@@ -10,5 +10,6 @@ func Compiler(argv []string) int {
 		return 1
 	}
 	fmt.Print(parsing.GetSettings())
+	parsing.GetFilesContent(parsing.GetSettings().FilesList)
 	return 0
 }

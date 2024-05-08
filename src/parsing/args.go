@@ -45,7 +45,7 @@ func ParseFlagsAndFiles(argv []string) int {
 			DisplayHelp()
 			return 1
 		}
-		settings.fileList = append(settings.fileList, argv[i])
+		settings.FilesList = append(settings.FilesList, argv[i])
 	}
 	return 0
 }
@@ -67,7 +67,7 @@ func ParseArgs(argv []string) int {
 	if ParseFlagsAndFiles(argv) == 1 {
 		return 1
 	}
-	if len(GetSettings().fileList) == 0 {
+	if len(GetSettings().FilesList) == 0 {
 		fmt.Fprintf(os.Stderr, "ERROR: No file given !\n")
 		return 1
 	}
