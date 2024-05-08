@@ -1,1 +1,10 @@
 docs/* linguist-detectable=false
+export/src/* linguist-detectable=false
+export/tests/* linguist-detectable=false
+export/docs/html/* linguist-detectable=false
+export/docs/tests/* linguist-detectable=false
+export/include/* linguist-detectable=false
+export/lib/my/* linguist-detectable=false
+export/lib/my/my_printf/* linguist-detectable=false
+export/lib/mylist/* linguist-detectable=false
+export/lib/mymemory/* linguist-detectable=false
