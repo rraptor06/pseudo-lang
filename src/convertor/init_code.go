@@ -1,33 +1,34 @@
 package convertor
 
-// functionStruct The structure containing the code and the properties of a function
-type functionStruct struct {
+// FunctionStruct The structure containing the code and the properties of a function
+type FunctionStruct struct {
 	name             string
 	args             []string
+	argsNames        []string
 	content          []string
 	convertedContent []string
 	returns          string
 }
 
-// codeStruct The structure containing the code of the program
-type codeStruct struct {
+// CodeStruct The structure containing the code of the program
+type CodeStruct struct {
 	fileContent   []string
-	mainFunction  functionStruct
-	functionsList []functionStruct
+	mainFunction  FunctionStruct
+	functionsList []FunctionStruct
 }
 
 // code The decomposed code of the program
-var code *codeStruct
+var code *CodeStruct
 
 // GetCode Initializes the settings if they are not already and returns them
 //
 // Returns the settings of the program
-func GetCode() *codeStruct {
+func GetCode() *CodeStruct {
 	if code == nil {
-		code = &codeStruct{
+		code = &CodeStruct{
 			fileContent:   []string{},
-			mainFunction:  functionStruct{},
-			functionsList: []functionStruct{},
+			mainFunction:  FunctionStruct{},
+			functionsList: []FunctionStruct{},
 		}
 	}
 	return code

@@ -1,7 +1,7 @@
 package parsing
 
-// settingsStruct The structure containing the settings of the program
-type settingsStruct struct {
+// SettingsStruct The structure containing the settings of the program
+type SettingsStruct struct {
 	FilesList   []string
 	ConvertOnly bool
 	OutputDir   string
@@ -10,17 +10,17 @@ type settingsStruct struct {
 }
 
 // settings The settings of the program
-var settings *settingsStruct
+var settings *SettingsStruct
 
 // GetSettings Initializes the settings if they are not already and returns them
 //
 // Returns the settings of the program
-func GetSettings() *settingsStruct {
+func GetSettings() *SettingsStruct {
 	if settings == nil {
-		settings = &settingsStruct{
+		settings = &SettingsStruct{
 			FilesList:   []string{},
 			ConvertOnly: false,
-			OutputDir:   "",
+			OutputDir:   "output",
 			Executable:  "main.out",
 			Run:         false,
 		}

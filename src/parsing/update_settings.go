@@ -27,7 +27,7 @@ func UpdateOutputDir(dir string) int {
 	settings := GetSettings()
 	var answer string
 
-	if settings.OutputDir != "" {
+	if settings.OutputDir != "output" {
 		fmt.Printf("The output directory is already set to \"%s\", do you want to overwrite it ? (y/n) ", settings.OutputDir)
 		fmt.Scanln(&answer)
 		if answer != "y" {
@@ -38,11 +38,7 @@ func UpdateOutputDir(dir string) int {
 		fmt.Printf("The directory \"%s\" already exists, do you want to overwrite it ? (y/n) ", dir)
 		fmt.Scanln(&answer)
 		if answer != "y" {
-			if settings.OutputDir == "" {
-				fmt.Print("The output directory is not set.\n")
-			} else {
-				fmt.Printf("The output directory is set to %s.\n", settings.OutputDir)
-			}
+			fmt.Printf("The output directory is set to %s.\n", settings.OutputDir)
 			return 0
 		}
 	}

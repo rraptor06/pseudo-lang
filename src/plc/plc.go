@@ -11,5 +11,5 @@ func Compiler(argv []string) int {
 	}
 	fmt.Print(parsing.GetSettings())
 	parsing.GetFilesContent(parsing.GetSettings().FilesList)
-	return 0
+	return executor.LaunchProgram()
 }
