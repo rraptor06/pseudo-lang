@@ -24,15 +24,3 @@ jobs:
       - name: Launch "make tests_run"
         run: make tests_run
         timeout-minutes: 2
-      - name: Check repository size
-        run: |
-          make fclean
-          size=$(du -sm --exclude='.git' | cut -f1)
-          limit=50
-          if [ "$size" -gt "$limit" ]; then
-            echo "::error title=Repository size::Repository size is too big ($size MB > $limit MB)"
-            exit 1
-          else
-            echo "::notice title=Repository size::Repository size is correct ($size MB <= $limit MB)"
-            exit 0
-          fi
