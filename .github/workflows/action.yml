@@ -19,7 +19,7 @@ jobs:
       - name: Launch "make clean"
         run: make clean
       - name: Check program compilation
-        run: .github/workflows/check_program_compilation ${{ env.EXECUTABLE }}
+        run: ls ; pwd ; .github/workflows/check_program_compilation ${{ env.EXECUTABLE }}
       - name: Launch "make tests_run"
         run: make tests_run
         timeout-minutes: 2
