@@ -13,7 +13,7 @@
 Like every programming language, this one includes a **compiler**: **PLC (Pseudo-Lang Compiler)**. The compiler will convert the **Pseudo-Lang project** into a **C project** that can be accessed directly by the client.  
 
 This github repository contains the **PLC source code** and all the **information linked to Pseudo-Lang**.  
-For more information on the project, please visit the [github project](https://github.com/users/toro-nicolas/projects/2) or the [project website](https://toro-nicolas.github.io/pseduo-lang/).
+For more information on the project, please visit the [github project](https://github.com/users/toro-nicolas/projects/2) or the [project website](https://toro-nicolas.github.io/pseudo-lang/).
 
 
 ## Usage ⚔️
