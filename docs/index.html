@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#⌨️️-pseudo-lang-🗣️">⌨️️ Pseudo-Lang 🗣️</a>
+<ul>
+<li><a href="#table-of-contents-📑">Table of contents 📑</a></li>
+<li><a href="#description-📝">Description 📝</a></li>
+<li><a href="#usage-⚔️">Usage ⚔️</a></li>
+<li><a href="#compilation-🛠️">Compilation 🛠️</a></li>
+<li><a href="#documentation-📚">Documentation 📚</a></li>
+<li><a href="#credits-👤">Credits 👤</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="⌨️️-pseudo-lang-🗣️">⌨️️ Pseudo-Lang 🗣️</h1>
+<h2 id="table-of-contents-📑">Table of contents 📑</h2>
+<ul>
+<li><a href="https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#description-">Description</a></li>
+<li><a href="https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#usage-%EF%B8%8F">Usage</a></li>
+<li><a href="https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#compilation-%EF%B8%8F">Compilation</a></li>
+<li><a href="https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#documentation-">Documentation</a></li>
+<li><a href="https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#credits-">Contributors</a></li>
+</ul>
+<h2 id="description-📝">Description 📝</h2>
+<p><strong>Pseudo-Lang</strong> is a programming language. Its aim is to <strong>write fast programs easily</strong>, <strong>accessible to all</strong> types of audience. It is based on the principle of the “<a href="https://en.wikipedia.org/wiki/Pseudocode"><strong>pseudo-code</strong></a>”, writing code in an almost natural language. Here, our language is based on a kind of <strong>pseudo-code in French</strong> (if required, we can add other languages).<br>
+Like every programming language, this one includes a <strong>compiler</strong>: <strong>PLC (Pseudo-Lang Compiler)</strong>. The compiler will convert the <strong>Pseudo-Lang project</strong> into a <strong>C project</strong> that can be accessed directly by the client.</p>
+<p>This github repository contains the <strong>PLC source code</strong> and all the <strong>information linked to Pseudo-Lang</strong>.<br>
+For more information on the project, please visit the <a href="https://github.com/users/toro-nicolas/projects/2">github project</a> or the <a href="https://toro-nicolas.github.io/pseduo-lang/">project website</a>.</p>
+<h2 id="usage-⚔️">Usage ⚔️</h2>
+<p>Here’s an example of a <strong>PSL</strong> (Pseudo-Lang) file :<br>
+<code>addition.psl</code></p>
+<pre class=" language-psl"><code class="prism  language-psl">afficher("Hello, World!\n")  
+  
+fonction: additionner(a, b)  
+    afficher(a, " + ", b, " = ")  
+    retourner a + b  
+      
+a &lt;- 5  
+b &lt;- 3  
+afficher(additionner(a, b), "\n")  
+</code></pre>
+<p>You can run plc like this :</p>
+<pre class=" language-sh"><code class="prism  language-sh">./plc addition.psl -o addition -r  
+</code></pre>
+<p>For more information, please see the help section.</p>
+<pre class=" language-sh"><code class="prism  language-sh">USAGE  
+ plc [OPTIONS] [file1.pl file2.pl ...]  
+DESCRIPTION  
+ The official Pseudo-Lang Compiler  
+OPTIONS  
+ -c              Only convert Pseudo-Lang to C, no compilation  
+        -d [directory]  Specify the code output directory  
+        -o [name]       Specify the name of the executable (default is main.out)  
+ -r              Run the program after compilation*  
+        -w              Disable warning display  
+</code></pre>
+<h2 id="compilation-🛠️">Compilation 🛠️</h2>
+<p>You can compile the <strong>PLC project</strong> with this command :</p>
+<pre class=" language-sh"><code class="prism  language-sh">make  
+</code></pre>
+<p>If you want clean the <strong>PLC project</strong>, you can run this command :</p>
+<pre class=" language-sh"><code class="prism  language-sh">make clean  
+</code></pre>
+<p>You can clean and compile the <strong>PLC project</strong> with <code>make re</code> .</p>
+<h2 id="documentation-📚">Documentation 📚</h2>
+<p>The documentation to the <strong>Pseudo-Lang</strong> is accessible <a href="https://toro-nicolas.github.io/pseudo-lang/pseudo-lang/">here</a>.</p>
+<p>To open the <strong>PLC documentation</strong>, run the command :</p>
+<pre class=" language-sh"><code class="prism  language-sh">make doc  
+</code></pre>
+<h2 id="credits-👤">Credits 👤</h2>
+<p>This project, <strong>Pseudo-Lang</strong> and <strong>its compiler</strong>, was totally <strong>imagined and built</strong> by <a href="https://github.com/toro-nicolas"><strong>Nicolas TORO</strong></a> as part of a <strong>HUB project</strong> for his first year in <a href="https://www.epitech.eu/programme-grande-ecole-informatique/"><strong>EPITECH’s Grande Ecole program</strong></a>.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

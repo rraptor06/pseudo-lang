@@ -32,3 +32,6 @@ re:	clean all
 run: re
 	@echo -e "\033[1;32mRun $(NAME).\033[0m"
 	@./$(NAME)
+
+doc:
+	@cd src ; google-chrome http://localhost:6060/pkg/pseudo-lang/ ; godoc -http=:6060
