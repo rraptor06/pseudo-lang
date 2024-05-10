@@ -5,7 +5,7 @@
 - [Usage](https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#usage-%EF%B8%8F)
 - [Compilation](https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#compilation-%EF%B8%8F)
 - [Documentation](https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#documentation-)
-- [Contributors](https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#credits-)
+- [Credits](https://github.com/toro-nicolas/pseudo-lang/blob/main/README.md#credits-)
 
 
 ## Description 📝
