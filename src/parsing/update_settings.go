@@ -3,16 +3,17 @@ package parsing
 import (
 	"fmt"
 	"os"
+	"pseudo-lang/constant"
 )
 
 // UpdateConvertOnly Updates the settings to only convert the program
 //
-// Returns 0 if everything went well, 1 if an error occured
+// Returns 0 if everything went well, 1 if an error occurred
 func UpdateConvertOnly() int {
 	settings := GetSettings()
 
 	if settings.Run == true {
-		fmt.Fprintf(os.Stderr, "ERROR: You can't only convert the program if you want to run it !\n")
+		fmt.Fprintf(os.Stderr, "%sERROR: You can't only convert the program if you want to run it !\n%s", constant.ErrorColor, constant.ResetColor)
 		return 1
 	}
 	settings.ConvertOnly = true
@@ -21,7 +22,7 @@ func UpdateConvertOnly() int {
 
 // UpdateOutputDir Updates the settings to change the output directory
 //
-// Returns 0 if everything went well, 1 if an error occured
+// Returns 0 if everything went well, 1 if an error occurred
 func UpdateOutputDir(dir string) int {
 	_, statError := os.Stat(dir)
 	settings := GetSettings()
@@ -48,7 +49,7 @@ func UpdateOutputDir(dir string) int {
 
 // UpdateExecutable Updates the settings to change the executable name
 //
-// Returns 0 if everything went well, 1 if an error occured
+// Returns 0 if everything went well, 1 if an error occurred
 func UpdateExecutable(executable string) int {
 	settings := GetSettings()
 	var answer string
@@ -66,14 +67,24 @@ func UpdateExecutable(executable string) int {
 
 // UpdateRun Updates the settings to run the program
 //
-// Returns 0 if everything went well, 1 if an error occured
+// Returns 0 if everything went well, 1 if an error occurred
 func UpdateRun() int {
 	settings := GetSettings()
 
 	if settings.ConvertOnly == true {
-		fmt.Fprintf(os.Stderr, "ERROR: You can't run the program if you want to only convert it !\n")
+		fmt.Fprintf(os.Stderr, "%sERROR: You can't run the program if you want to only convert it !\n%s", constant.ErrorColor, constant.ResetColor)
 		return 1
 	}
 	settings.Run = true
+	return 0
+}
+
+// UpdateWarning Updates the settings to display the warnings
+//
+// Returns 0 if everything went well, 1 if an error occurred
+func UpdateWarning() int {
+	settings := GetSettings()
+
+	settings.Warning = true
 	return 0
 }

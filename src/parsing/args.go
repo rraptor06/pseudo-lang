@@ -3,6 +3,7 @@ package parsing
 import (
 	"fmt"
 	"os"
+	"pseudo-lang/constant"
 )
 
 // ParseFlagsAndFiles Parses the flags and the files given to the program
@@ -40,8 +41,14 @@ func ParseFlagsAndFiles(argv []string) int {
 			}
 			continue
 		}
+		if argv[i] == "-w" {
+			if UpdateWarning() == 1 {
+				return 1
+			}
+			continue
+		}
 		if argv[i][0] == '-' {
-			fmt.Fprintf(os.Stderr, "ERROR: Unknown flag %s !\n", argv[i])
+			fmt.Fprintf(os.Stderr, "%sERROR: Unknown flag %s !\n%s", constant.ErrorColor, argv[i], constant.ResetColor)
 			DisplayHelp()
 			return 1
 		}
@@ -57,7 +64,7 @@ func ParseFlagsAndFiles(argv []string) int {
 // Returns 0 if everything went well, 1 if an error occured
 func ParseArgs(argv []string) int {
 	if len(argv) == 1 {
-		fmt.Fprintf(os.Stderr, "ERROR: No argument given !\n")
+		fmt.Fprintf(os.Stderr, "%sERROR: No argument given !\n%s", constant.ErrorColor, constant.ResetColor)
 		return 1
 	}
 	if len(argv) == 2 && (argv[1] == "-h" || argv[1] == "--help") {
@@ -68,7 +75,7 @@ func ParseArgs(argv []string) int {
 		return 1
 	}
 	if len(GetSettings().FilesList) == 0 {
-		fmt.Fprintf(os.Stderr, "ERROR: No file given !\n")
+		fmt.Fprintf(os.Stderr, "%sERROR: No file given !\n%s", constant.ErrorColor, constant.ResetColor)
 		return 1
 	}
 	return 0

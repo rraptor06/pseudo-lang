@@ -3,6 +3,7 @@ package parsing
 import (
 	"fmt"
 	"os"
+	"pseudo-lang/constant"
 	"strings"
 )
 
@@ -17,7 +18,7 @@ func GetFilesContent(files []string) []string {
 	for _, file := range files {
 		content, err := os.ReadFile(file)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "ERROR: Could not read the \"%s\" !\n", file)
+			fmt.Fprintf(os.Stderr, "%sERROR: Could not read the \"%s\" !\n%s", constant.ErrorColor, file, constant.ResetColor)
 			return nil
 		}
 		parts := strings.Split(string(content), "\n")

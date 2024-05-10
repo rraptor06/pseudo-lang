@@ -14,4 +14,5 @@ func DisplayHelp() {
 	fmt.Println("\t-d [directory]\tSpecify the code output directory (default is output)")
 	fmt.Println("\t-o [name]\tSpecify the name of the executable (default is main.out)")
 	fmt.Println("\t-r\t\tRun the program after compilation")
+	fmt.Println("\t-w\t\tDisable warning display")
 }

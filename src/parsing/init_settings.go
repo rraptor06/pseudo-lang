@@ -7,6 +7,7 @@ type SettingsStruct struct {
 	OutputDir   string
 	Executable  string
 	Run         bool
+	Warning     bool
 }
 
 // settings The settings of the program
@@ -23,6 +24,7 @@ func GetSettings() *SettingsStruct {
 			OutputDir:   "output",
 			Executable:  "main.out",
 			Run:         false,
+			Warning:     true,
 		}
 	}
 	return settings

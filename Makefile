@@ -23,9 +23,10 @@ $(NAME):
 	@mv $(SRCDIR)/main $(NAME)
 
 clean:
+	@make fclean --no-print-directory -C ./template/
 	@rm -rf *.log
 	@rm -rf $(NAME)
-	@echo -e "\033[1;31mProject cleaned.\033[0m"
+	@echo -e "\033[1;31mPLC Project cleaned.\033[0m"
 
 re:	clean all
 
