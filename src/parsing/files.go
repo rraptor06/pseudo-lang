@@ -1,3 +1,4 @@
+// Package parsing: The package containing the parsing functions
 package parsing
 
 import (
@@ -9,7 +10,7 @@ import (
 
 // GetFilesContent Check files and get their content
 //
-// files: The list of the files to read
+/* files: The list of the files to read */
 //
 // Returns the content of the files given
 func GetFilesContent(files []string) []string {

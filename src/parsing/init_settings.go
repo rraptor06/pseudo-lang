@@ -1,3 +1,4 @@
+// Package parsing: The package containing the parsing functions
 package parsing
 
 // SettingsStruct The structure containing the settings of the program

@@ -1,3 +1,4 @@
+// Package executor: The package containing the executor functions
 package executor
 
 import (
@@ -8,6 +9,9 @@ import (
 	"pseudo-lang/parsing"
 )
 
+// LaunchProgram Create the project and run it
+//
+// Returns 0 if the program ran successfully, 1 otherwise
 func LaunchProgram() int {
 	settings := parsing.GetSettings()
 
@@ -15,7 +19,7 @@ func LaunchProgram() int {
 		fmt.Fprintf(os.Stderr, "%sERROR: Can't create the output directory !\n%s", constant.ErrorColor, constant.ResetColor)
 		return 1
 	}
-	ReplaceInFile(GetMakefilePath(settings.OutputDir), "plc-project", settings.Executable)
+	ReplaceInFile(GetFilePath(settings.OutputDir, "Makefile"), "plc-project", settings.Executable)
 	WriteCode(settings.OutputDir)
 	if settings.ConvertOnly {
 		fmt.Printf("%sThe program has been converted in the \"%s\" directory.\n%s", constant.SuccessColor, settings.OutputDir, constant.ResetColor)

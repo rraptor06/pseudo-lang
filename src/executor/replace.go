@@ -1,3 +1,4 @@
+// Package executor: The package containing the executor functions
 package executor
 
 import (
@@ -26,14 +27,14 @@ func ReplaceInFile(filePath, oldWord, newWord string) error {
 	return nil
 }
 
-// GetMakefilePath Get the path of the Makefile
+// GetFilePath Get the path of a file
 //
 /* outputDirectory: The directory where the Makefile is */
 //
 // Returns the path of the Makefile
-func GetMakefilePath(outputDirectory string) string {
+func GetFilePath(outputDirectory string, file string) string {
 	if outputDirectory[len(outputDirectory)-1] == '/' {
-		return outputDirectory + "Makefile"
+		return outputDirectory + file
 	}
-	return outputDirectory + "/Makefile"
+	return outputDirectory + "/" + file
 }

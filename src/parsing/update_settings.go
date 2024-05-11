@@ -1,3 +1,4 @@
+// Package parsing: The package containing the parsing functions
 package parsing
 
 import (
@@ -21,6 +22,8 @@ func UpdateConvertOnly() int {
 }
 
 // UpdateOutputDir Updates the settings to change the output directory
+//
+/* dir: The new output directory */
 //
 // Returns 0 if everything went well, 1 if an error occurred
 func UpdateOutputDir(dir string) int {
@@ -48,6 +51,8 @@ func UpdateOutputDir(dir string) int {
 }
 
 // UpdateExecutable Updates the settings to change the executable name
+//
+/* executable: The new executable name */
 //
 // Returns 0 if everything went well, 1 if an error occurred
 func UpdateExecutable(executable string) int {

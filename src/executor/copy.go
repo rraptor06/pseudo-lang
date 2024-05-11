@@ -1,3 +1,4 @@
+// Package executor: The package containing the executor functions
 package executor
 
 import (

@@ -1,3 +1,4 @@
+// Package parsing: The package containing the parsing functions
 package parsing
 
 import (
@@ -8,7 +9,7 @@ import (
 
 // ParseFlagsAndFiles Parses the flags and the files given to the program
 //
-// argv: The arguments given to the program
+/* argv: The arguments given to the program */
 //
 // Returns 0 if everything went well, 1 if an error occured
 func ParseFlagsAndFiles(argv []string) int {
@@ -59,7 +60,7 @@ func ParseFlagsAndFiles(argv []string) int {
 
 // ParseArgs Parses the arguments given to the program
 //
-// argv: The arguments given to the program
+/* argv: The arguments given to the program */
 //
 // Returns 0 if everything went well, 1 if an error occured
 func ParseArgs(argv []string) int {
