@@ -51,7 +51,7 @@ func GetCode() *CodeStruct {
 				LocalVars:        []VariableStruct{},
 				Content:          []string{},
 				ConvertedContent: []string{},
-				Returns:          "int",
+				Returns:          "int ",
 			},
 			FunctionsList: []*FunctionStruct{},
 			GlobalVars:    []*VariableStruct{},

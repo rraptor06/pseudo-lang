@@ -22,7 +22,7 @@ Here's an example of a **PSL** (Pseudo-Lang) file :
 ```psl
 afficher("Hello, World!\n")
 
-fonction: additionner(a, b)
+fonction: additionner(entier a, entier b) -> entier
     afficher(a, " + ", b, " = ")
     retourner a + b
     

@@ -13,7 +13,7 @@ func WritePrototypes(outputDir string, functionsList []*convertor.FunctionStruct
 	var prototypeList string
 
 	for _, function := range functionsList {
-		prototypeList += function.Returns + " " + function.Name + "("
+		prototypeList += function.Returns + function.Name + "("
 		for index, arg := range function.Args {
 			prototypeList += arg + function.ArgsNames[index]
 			if index < len(function.Args)-1 {
@@ -33,7 +33,7 @@ func WritePrototypes(outputDir string, functionsList []*convertor.FunctionStruct
 func GetFunctionText(function *convertor.FunctionStruct) string {
 	var functionText string
 
-	functionText += function.Returns + " " + function.Name + "("
+	functionText += function.Returns + function.Name + "("
 	for index, arg := range function.Args {
 		functionText += arg + function.ArgsNames[index]
 		if index < len(function.Args)-1 {

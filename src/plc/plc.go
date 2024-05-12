@@ -2,6 +2,7 @@
 package plc
 
 import (
+	"pseudo-lang/convertor"
 	"pseudo-lang/executor"
 	"pseudo-lang/parsing"
 )
@@ -15,6 +16,8 @@ func Compiler(argv []string) int {
 	if parsing.ParseArgs(argv) == 1 {
 		return 1
 	}
-	parsing.GetFilesContent(parsing.GetSettings().FilesList)
+	if convertor.ConvertCode() == 1 {
+		return 1
+	}
 	return executor.LaunchProgram()
 }
