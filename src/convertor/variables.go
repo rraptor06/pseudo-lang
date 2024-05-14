@@ -1,6 +1,11 @@
 package convertor
 
-import "strings"
+import (
+	"fmt"
+	"os"
+	"pseudo-lang/constant"
+	"strings"
+)
 
 func GetVariablesType(line string, inFuction bool) string {
 	supplement := " "
@@ -44,4 +49,68 @@ func IsValidVariableName(name string) bool {
 		}
 	}
 	return true
+}
+
+func AddVariable(function *FunctionStruct, line string, lineIndex int) int {
+	var variable *VariableStruct
+
+	depth := 0
+	for IsIndented(line) {
+		line = RemoveIndentation(line)
+		depth++
+	}
+	index := strings.Index(line, ":")
+	variableType := GetVariablesType(line[:index], true)
+	if variableType == "" {
+		fmt.Fprintf(os.Stderr, "%sERROR: Invalid variable type in line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
+		return 1
+	}
+	index = strings.Index(line, "entier:")
+	if index == -1 {
+		index = strings.Index(line, "decimal:")
+		if index == -1 {
+			index = strings.Index(line, "vide:")
+			if index == -1 {
+				fmt.Fprintf(os.Stderr, "%sERROR: Invalid variable type in line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
+				return 1
+			}
+		}
+	}
+	end := strings.Index(line, "<-")
+	if end == -1 {
+		end = len(line)
+	}
+	name := strToArray(line[index+7 : end])
+	if len(name) != 1 || !IsValidVariableName(name[0]) {
+		fmt.Fprintf(os.Stderr, "%sERROR: Invalid variable name in line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
+		return 1
+	}
+	variable = &VariableStruct{
+		Name:         name[0],
+		VariableType: variableType,
+		Line:         lineIndex,
+		Depth:        depth,
+	}
+	function.LocalVars = append(function.LocalVars, variable)
+	return 0
+}
+
+func GetAllVariables(code *CodeStruct) int {
+	for _, function := range code.FunctionsList {
+		for index, line := range function.Content {
+			if strings.Contains(line, ":") && strings.Contains(line, "Tant que:") == false &&
+				strings.Contains(line, "Si:") == false && strings.Contains(line, "Sinon:") == false &&
+				strings.Contains(line, "Sinon si:") == false && AddVariable(function, line, index) == 1 {
+				return 1
+			}
+		}
+	}
+	for index, line := range code.MainFunction.Content {
+		if strings.Contains(line, ":") && strings.Contains(line, "Tant que:") == false &&
+			strings.Contains(line, "Si:") == false && strings.Contains(line, "Sinon:") == false &&
+			strings.Contains(line, "Sinon si:") == false && AddVariable(code.MainFunction, line, index) == 1 {
+			return 1
+		}
+	}
+	return 0
 }

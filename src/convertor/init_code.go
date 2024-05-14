@@ -5,6 +5,8 @@ package convertor
 type VariableStruct struct {
 	Name         string
 	VariableType string
+	Line         int
+	Depth        int
 }
 
 // FunctionStruct The structure containing the code and the properties of a function
@@ -12,7 +14,7 @@ type FunctionStruct struct {
 	Name             string
 	Args             []string
 	ArgsNames        []string
-	LocalVars        []VariableStruct
+	LocalVars        []*VariableStruct
 	Content          []string
 	ConvertedContent []string
 	Returns          string
@@ -23,7 +25,6 @@ type CodeStruct struct {
 	FileContent   []string
 	MainFunction  *FunctionStruct
 	FunctionsList []*FunctionStruct
-	GlobalVars    []*VariableStruct
 }
 
 // code The decomposed code of the program
@@ -48,13 +49,31 @@ func GetCode() *CodeStruct {
 					"argv",
 					"envp",
 				},
-				LocalVars:        []VariableStruct{},
+				LocalVars: []*VariableStruct{
+					&VariableStruct{
+						Name:         "argc",
+						VariableType: "int ",
+						Line:         0,
+						Depth:        0,
+					},
+					&VariableStruct{
+						Name:         "argv",
+						VariableType: "char **",
+						Line:         0,
+						Depth:        0,
+					},
+					&VariableStruct{
+						Name:         "envp",
+						VariableType: "char **",
+						Line:         0,
+						Depth:        0,
+					},
+				},
 				Content:          []string{},
 				ConvertedContent: []string{},
 				Returns:          "int ",
 			},
 			FunctionsList: []*FunctionStruct{},
-			GlobalVars:    []*VariableStruct{},
 		}
 	}
 	return code

@@ -106,12 +106,21 @@ func GetNewFunction(line string) *FunctionStruct {
 		fmt.Fprintf(os.Stderr, "%sERROR: Invalid return type !\n%s", constant.ErrorColor, constant.ResetColor)
 		return nil
 	}
+	var variableStructList []*VariableStruct
+	for index, arg := range argsList {
+		variableStructList = append(variableStructList, &VariableStruct{
+			Name:         argsNamesList[index],
+			VariableType: arg,
+			Line:         0,
+			Depth:        0,
+		})
+	}
 
 	NewFunction = &FunctionStruct{
 		Name:             functionName,
 		Args:             argsList,
 		ArgsNames:        argsNamesList,
-		LocalVars:        []VariableStruct{},
+		LocalVars:        variableStructList,
 		Content:          []string{},
 		ConvertedContent: []string{},
 		Returns:          returnType,
