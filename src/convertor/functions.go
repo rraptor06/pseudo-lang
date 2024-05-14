@@ -133,8 +133,8 @@ func GetAllFunctions(code *CodeStruct) int {
 
 	NewFunction = nil
 	for _, line := range code.FileContent {
-		if strings.HasPrefix(line, "fonction:") && (line[9] == ' ' || line[9] == '\t') {
-			NewFunction = GetNewFunction(line[10:])
+		if strings.HasPrefix(line, "fonction:") {
+			NewFunction = GetNewFunction(line[9:])
 			if NewFunction == nil {
 				return 1
 			}

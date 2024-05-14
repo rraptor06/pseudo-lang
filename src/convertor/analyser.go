@@ -9,13 +9,13 @@ import (
 
 type Instructions struct {
 	Name     string
-	Function func(string, *int) string
+	Function func(string, *[]string) string
 }
 
 func analyseFunctionContent(instructionsList []*Instructions, function *FunctionStruct) int {
 	var new_line string
+	var indentationList []string
 	added := false
-	indentation := 0
 
 	for _, line := range function.Content {
 		added = false
@@ -24,9 +24,9 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 		}
 		for _, instruction := range instructionsList {
 			if strings.Contains(line, instruction.Name) {
-				new_line = instruction.Function(line, &indentation)
-				if new_line != "" {
-					return 1
+				new_line = instruction.Function(line, &indentationList)
+				if new_line == "" {
+					//return 1
 				}
 				function.ConvertedContent = append(function.ConvertedContent, new_line)
 				added = true
@@ -34,22 +34,22 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 			}
 		}
 		if added == false && strings.Contains(line, "->") {
-			if analyseVariable(line, &indentation) != "" {
-				return 1
+			if analyseVariable(line, &indentationList) == "" {
+				//return 1
 			}
 			function.ConvertedContent = append(function.ConvertedContent, new_line)
 			added = true
 		}
 		if added == false && strings.Contains(line, "(") {
-			if analyseFunction(line, &indentation) != "" {
-				return 1
+			if analyseFunction(line, &indentationList) == "" {
+				//return 1
 			}
 			function.ConvertedContent = append(function.ConvertedContent, new_line)
 			added = true
 		}
 		if added == false {
 			fmt.Fprintf(os.Stderr, "%sERROR: Can't convert the line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
-			return 1
+			//return 1
 		}
 	}
 	return 0
@@ -89,7 +89,7 @@ func analyseCode(code *CodeStruct) int {
 		}
 	}
 	if analyseFunctionContent(instructionsList, code.MainFunction) != 0 {
-		return 1
+		//return 1
 	}
 	return 0
 }

@@ -7,27 +7,41 @@ import (
 	"strings"
 )
 
-func analyseFunction(line string, indentation *int) string {
+func analyseFunction(line string, indentationList *[]string) string {
 	return ""
 }
 
-func analyseReturn(line string, indentation *int) string {
-	new_line := ""
+func analyseReturn(line string, indentationList *[]string) string {
+	newLine := "\t"
 
-	currentIndentation := 0
+	indentation := 0
 	for IsIndented(line) {
 		line = RemoveIndentation(line)
-		currentIndentation++
+		indentation++
 	}
-	if currentIndentation > *indentation {
+	if indentation > len(*indentationList) {
 		fmt.Fprintf(os.Stderr, "%sERROR: Too much indentation in line \"%s\" !%s\n", constant.ErrorColor, line, constant.ResetColor)
-		return new_line
+		return ""
+	} else if indentation < len(*indentationList) {
+		*indentationList = (*indentationList)[:len(*indentationList)-1]
+		index := 0
+		for index < indentation {
+			newLine += "\t"
+			index++
+		}
+		newLine += "}\n\t"
 	}
-	*indentation = currentIndentation
 	if strings.HasPrefix(line, "retourner:") == false {
 		fmt.Fprintf(os.Stderr, "%sERROR: Invalid return in line \"%s\" !%s\n", constant.ErrorColor, line, constant.ResetColor)
-		return new_line
+		return ""
 	}
-	new_line = "return" + line[10:] + ";"
-	return new_line
+	index := 0
+	for index < indentation {
+		newLine += "\t"
+		index++
+	}
+	line = strings.ReplaceAll(line, "(address)", "&")
+	line = strings.ReplaceAll(line, "(value)", "")
+	newLine += "return" + line[10:] + ";"
+	return newLine
 }

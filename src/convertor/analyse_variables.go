@@ -1,9 +1,9 @@
 package convertor
 
-func analyseInitVariable(line string, indentation *int) string {
+func analyseInitVariable(line string, indentationList *[]string) string {
 	return ""
 }
 
-func analyseVariable(line string, indentation *int) string {
+func analyseVariable(line string, indentationList *[]string) string {
 	return ""
 }

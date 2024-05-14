@@ -1,6 +1,6 @@
 afficher("Hello, World!\n")
 
-fonction: additionner(entier a, entier b) -> entier
+fonction:additionner(entier a, entier b) -> entier
     afficher(a, " + ", b, " = ")
     retourner: a + b
 
