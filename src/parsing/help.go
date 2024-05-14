@@ -6,7 +6,7 @@ import "fmt"
 // DisplayHelp Displays the help message
 func DisplayHelp() {
 	fmt.Println("USAGE")
-	fmt.Println("\tplc [OPTIONS] [file1.pl file2.pl ...]")
+	fmt.Println("\tplc [OPTIONS] [file1.psl file2.psl ...]")
 	fmt.Println("DESCRIPTION")
 	fmt.Println("\tThe official Pseudo-Lang Compiler")
 	fmt.Println("OPTIONS")
