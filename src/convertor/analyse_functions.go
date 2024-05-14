@@ -49,6 +49,11 @@ func analyseReturn(line string, indentationList *[]string) string {
 		}
 		index++
 	}
+	nb := 0
+	for nb < indentation {
+		newLine += "\t"
+		nb++
+	}
 	newLine += "return"
 	if line[index:] != "" {
 		newLine += " "

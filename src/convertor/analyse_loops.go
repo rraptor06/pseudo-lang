@@ -45,6 +45,11 @@ func analyseWhile(line string, indentationList *[]string) string {
 		}
 		index++
 	}
+	nb := 0
+	for nb < indentation {
+		newLine += "\t"
+		nb++
+	}
 	newLine += "while (" + line[index:] + ") {"
 	*indentationList = append(*indentationList, "while")
 	return newLine

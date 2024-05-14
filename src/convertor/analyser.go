@@ -34,15 +34,17 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 				break
 			}
 		}
-		if added == false && strings.Contains(line, "->") {
-			if analyseVariable(line, &indentationList) == "" {
+		if added == false && strings.Contains(line, "<-") {
+			newLine = analyseVariable(function, line, &indentationList)
+			if newLine == "" {
 				//return 1
 			}
 			function.ConvertedContent = append(function.ConvertedContent, newLine)
 			added = true
 		}
 		if added == false && strings.Contains(line, "(") {
-			if analyseFunction(line, &indentationList) == "" {
+			newLine = analyseFunction(line, &indentationList)
+			if newLine == "" {
 				//return 1
 			}
 			function.ConvertedContent = append(function.ConvertedContent, newLine)

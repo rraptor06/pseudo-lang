@@ -66,10 +66,13 @@ func AddVariable(function *FunctionStruct, line string, lineIndex int) int {
 		return 1
 	}
 	index = strings.Index(line, "entier:")
+	variableLength := 7
 	if index == -1 {
 		index = strings.Index(line, "decimal:")
+		variableLength = 8
 		if index == -1 {
 			index = strings.Index(line, "vide:")
+			variableLength = 5
 			if index == -1 {
 				fmt.Fprintf(os.Stderr, "%sERROR: Invalid variable type in line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
 				return 1
@@ -80,7 +83,7 @@ func AddVariable(function *FunctionStruct, line string, lineIndex int) int {
 	if end == -1 {
 		end = len(line)
 	}
-	name := strToArray(line[index+7 : end])
+	name := strToArray(line[index+variableLength : end])
 	if len(name) != 1 || !IsValidVariableName(name[0]) {
 		fmt.Fprintf(os.Stderr, "%sERROR: Invalid variable name in line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
 		return 1
@@ -101,7 +104,7 @@ func GetAllVariables(code *CodeStruct) int {
 			if strings.Contains(line, ":") &&
 				strings.Contains(line, "retourner:") == false && strings.Contains(line, "tant que:") == false &&
 				strings.Contains(line, "si:") == false && strings.Contains(line, "sinon:") == false &&
-				strings.Contains(line, "sinon si:") == false && AddVariable(code.MainFunction, line, index) == 1 {
+				strings.Contains(line, "sinon si:") == false && AddVariable(function, line, index) == 1 {
 				return 1
 			}
 		}

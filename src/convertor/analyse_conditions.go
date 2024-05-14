@@ -52,6 +52,11 @@ func analyseElseIf(line string, indentationList *[]string) string {
 		}
 		index++
 	}
+	nb := 0
+	for nb < indentation {
+		newLine += "\t"
+		nb++
+	}
 	newLine += "else if (" + line[index:] + ") {"
 	*indentationList = append(*indentationList, "if")
 	return newLine
@@ -94,6 +99,11 @@ func analyseIf(line string, indentationList *[]string) string {
 			break
 		}
 		index++
+	}
+	nb := 0
+	for nb < indentation {
+		newLine += "\t"
+		nb++
 	}
 	newLine += "if (" + line[index:] + ") {"
 	*indentationList = append(*indentationList, "if")
@@ -144,6 +154,11 @@ func analyseElse(line string, indentationList *[]string) string {
 			break
 		}
 		index++
+	}
+	nb := 0
+	for nb < indentation {
+		newLine += "\t"
+		nb++
 	}
 	newLine += "else (" + line[index:] + ") {"
 	*indentationList = append(*indentationList, "else")
