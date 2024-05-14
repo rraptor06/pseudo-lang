@@ -12,7 +12,7 @@ afficher(additionner(a, b), "\n")
 
 entier:     test    <-    1
 afficher("Bonjour, je suis le test " + test + "\n")
-affiche_test(adresse test)
+affiche_test((adresse)test)
 
 fonction: affiche_test((adresse)entier nb_test)
     tant que: (valeur)nb_test < 5

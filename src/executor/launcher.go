@@ -27,12 +27,16 @@ func LaunchProgram() int {
 	}
 	cmd := exec.Command("make")
 	cmd.Dir = settings.OutputDir
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
+	if settings.Warning == true {
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+	}
 	err := cmd.Run()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%sERROR: Couldn't compile the program !\n%s", constant.ErrorColor, constant.ResetColor)
 		return 1
+	} else if settings.Warning == false {
+		fmt.Printf("%s%s compiled.\n%s", constant.CompilationColor, settings.Executable, constant.ResetColor)
 	}
 	if settings.Run {
 		fmt.Printf("%sRunning the program...\n%s", constant.SuccessColor, constant.ResetColor)

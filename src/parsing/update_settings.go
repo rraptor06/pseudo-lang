@@ -90,6 +90,6 @@ func UpdateRun() int {
 func UpdateWarning() int {
 	settings := GetSettings()
 
-	settings.Warning = true
+	settings.Warning = false
 	return 0
 }

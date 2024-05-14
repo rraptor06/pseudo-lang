@@ -43,7 +43,7 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 			added = true
 		}
 		if added == false && strings.Contains(line, "(") {
-			newLine = analyseFunction(line, &indentationList)
+			newLine = analyseFunction(function, line, &indentationList)
 			if newLine == "" {
 				//return 1
 			}
