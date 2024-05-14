@@ -13,22 +13,23 @@ type Instructions struct {
 }
 
 func analyseFunctionContent(instructionsList []*Instructions, function *FunctionStruct) int {
-	var new_line string
+	var newLine string
 	var indentationList []string
 	added := false
 
 	for _, line := range function.Content {
 		added = false
+		newLine = ""
 		if line == "" {
 			continue
 		}
 		for _, instruction := range instructionsList {
 			if strings.Contains(line, instruction.Name) {
-				new_line = instruction.Function(line, &indentationList)
-				if new_line == "" {
+				newLine = instruction.Function(line, &indentationList)
+				if newLine == "" {
 					//return 1
 				}
-				function.ConvertedContent = append(function.ConvertedContent, new_line)
+				function.ConvertedContent = append(function.ConvertedContent, newLine)
 				added = true
 				break
 			}
@@ -37,14 +38,14 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 			if analyseVariable(line, &indentationList) == "" {
 				//return 1
 			}
-			function.ConvertedContent = append(function.ConvertedContent, new_line)
+			function.ConvertedContent = append(function.ConvertedContent, newLine)
 			added = true
 		}
 		if added == false && strings.Contains(line, "(") {
 			if analyseFunction(line, &indentationList) == "" {
 				//return 1
 			}
-			function.ConvertedContent = append(function.ConvertedContent, new_line)
+			function.ConvertedContent = append(function.ConvertedContent, newLine)
 			added = true
 		}
 		if added == false {

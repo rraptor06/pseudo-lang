@@ -42,6 +42,17 @@ func analyseReturn(line string, indentationList *[]string) string {
 	}
 	line = strings.ReplaceAll(line, "(address)", "&")
 	line = strings.ReplaceAll(line, "(value)", "")
-	newLine += "return" + line[10:] + ";"
+	index = 10
+	for _, char := range line[index:] {
+		if char != ' ' && char != '\t' {
+			break
+		}
+		index++
+	}
+	newLine += "return"
+	if line[index:] != "" {
+		newLine += " "
+	}
+	newLine += line[index:] + ";"
 	return newLine
 }

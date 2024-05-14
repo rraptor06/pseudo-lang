@@ -38,7 +38,14 @@ func analyseWhile(line string, indentationList *[]string) string {
 	}
 	line = strings.ReplaceAll(line, "(adresse)", "&")
 	line = strings.ReplaceAll(line, "(valeur)", "*")
-	newLine += "while (" + line[9:] + ") {"
+	index = 9
+	for _, char := range line[index:] {
+		if char != ' ' && char != '\t' {
+			break
+		}
+		index++
+	}
+	newLine += "while (" + line[index:] + ") {"
 	*indentationList = append(*indentationList, "while")
 	return newLine
 }

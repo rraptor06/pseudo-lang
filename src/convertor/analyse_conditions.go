@@ -45,7 +45,14 @@ func analyseElseIf(line string, indentationList *[]string) string {
 	}
 	line = strings.ReplaceAll(line, "(adresse)", "&")
 	line = strings.ReplaceAll(line, "(valeur)", "*")
-	newLine += "else if (" + line[9:] + ") {"
+	index = 9
+	for _, char := range line[index:] {
+		if char != ' ' && char != '\t' {
+			break
+		}
+		index++
+	}
+	newLine += "else if (" + line[index:] + ") {"
 	*indentationList = append(*indentationList, "if")
 	return newLine
 }
@@ -81,7 +88,14 @@ func analyseIf(line string, indentationList *[]string) string {
 	}
 	line = strings.ReplaceAll(line, "(adresse)", "&")
 	line = strings.ReplaceAll(line, "(valeur)", "*")
-	newLine += "if (" + line[3:] + ") {"
+	index = 3
+	for _, char := range line[index:] {
+		if char != ' ' && char != '\t' {
+			break
+		}
+		index++
+	}
+	newLine += "if (" + line[index:] + ") {"
 	*indentationList = append(*indentationList, "if")
 	return newLine
 }
@@ -124,7 +138,14 @@ func analyseElse(line string, indentationList *[]string) string {
 	}
 	line = strings.ReplaceAll(line, "(adresse)", "&")
 	line = strings.ReplaceAll(line, "(valeur)", "*")
-	newLine += "else (" + line[6:] + ") {"
+	index = 6
+	for _, char := range line[index:] {
+		if char != ' ' && char != '\t' {
+			break
+		}
+		index++
+	}
+	newLine += "else (" + line[index:] + ") {"
 	*indentationList = append(*indentationList, "else")
 	return newLine
 }
