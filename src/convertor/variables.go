@@ -98,17 +98,19 @@ func AddVariable(function *FunctionStruct, line string, lineIndex int) int {
 func GetAllVariables(code *CodeStruct) int {
 	for _, function := range code.FunctionsList {
 		for index, line := range function.Content {
-			if strings.Contains(line, ":") && strings.Contains(line, "Tant que:") == false &&
-				strings.Contains(line, "Si:") == false && strings.Contains(line, "Sinon:") == false &&
-				strings.Contains(line, "Sinon si:") == false && AddVariable(function, line, index) == 1 {
+			if strings.Contains(line, ":") &&
+				strings.Contains(line, "retourner:") == false && strings.Contains(line, "tant que:") == false &&
+				strings.Contains(line, "si:") == false && strings.Contains(line, "sinon:") == false &&
+				strings.Contains(line, "sinon si:") == false && AddVariable(code.MainFunction, line, index) == 1 {
 				return 1
 			}
 		}
 	}
 	for index, line := range code.MainFunction.Content {
-		if strings.Contains(line, ":") && strings.Contains(line, "Tant que:") == false &&
-			strings.Contains(line, "Si:") == false && strings.Contains(line, "Sinon:") == false &&
-			strings.Contains(line, "Sinon si:") == false && AddVariable(code.MainFunction, line, index) == 1 {
+		if strings.Contains(line, ":") &&
+			strings.Contains(line, "retourner:") == false && strings.Contains(line, "tant que:") == false &&
+			strings.Contains(line, "si:") == false && strings.Contains(line, "sinon:") == false &&
+			strings.Contains(line, "sinon si:") == false && AddVariable(code.MainFunction, line, index) == 1 {
 			return 1
 		}
 	}

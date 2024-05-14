@@ -1,5 +1,11 @@
 package convertor
 
+import (
+	"fmt"
+	"os"
+	"pseudo-lang/constant"
+)
+
 // IsIndented Check if a line is indented
 //
 /* line: The line to check */
@@ -43,4 +49,44 @@ func RemoveIndentation(line string) string {
 		}
 	}
 	return line[index:]
+}
+
+func InvalidIndentation(line string) bool {
+	space := 0
+
+	for _, char := range line {
+		if char != '\t' && char != ' ' {
+			break
+		}
+		if char == '\t' {
+			space++
+			for space%4 != 0 {
+				space++
+			}
+		} else {
+			space++
+		}
+	}
+	if space%4 != 0 {
+		return true
+	}
+	return false
+}
+
+func CheckIndentation(code *CodeStruct) int {
+	for _, function := range code.FunctionsList {
+		for _, line := range function.Content {
+			if InvalidIndentation(line) {
+				fmt.Fprintf(os.Stderr, "%sERROR: Invalid indentation in line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
+				return 1
+			}
+		}
+	}
+	for _, line := range code.MainFunction.Content {
+		if InvalidIndentation(line) {
+			fmt.Fprintf(os.Stderr, "%sERROR: Invalid indentation in line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
+			return 1
+		}
+	}
+	return 0
 }

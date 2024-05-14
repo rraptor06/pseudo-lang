@@ -2,7 +2,7 @@ afficher("Hello, World!\n")
 
 fonction: additionner(entier a, entier b) -> entier
     afficher(a, " + ", b, " = ")
-    retourner a + b
+    retourner: a + b
 
 entier: a <- 5
 entier: b <- 3
@@ -15,7 +15,7 @@ afficher("Bonjour, je suis le test " + test + "\n")
 affiche_test(adresse test)
 
 fonction: affiche_test((adresse)entier nb_test)
-    Tant que: (valeur)nb_test < 5
+    tant que: (valeur)nb_test < 5
         (valeur)nb_test <- (valeur)nb_test + 1
         afficher("Bonjour, je suis le test " + (valeur)nb_test + "\n")
-    retourner Rien
+    retourner:

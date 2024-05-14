@@ -12,8 +12,8 @@ func ConvertCode() int {
 	if code.FileContent == nil {
 		return 1
 	}
-	if GetAllFunctions(code) != 0 || GetAllVariables(code) != 0 {
+	if GetAllFunctions(code) != 0 || CheckIndentation(code) != 0 || GetAllVariables(code) != 0 {
 		return 1
 	}
-	return 0
+	return analyseCode(code)
 }
