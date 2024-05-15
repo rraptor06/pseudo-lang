@@ -5,6 +5,9 @@ import (
 	"pseudo-lang/parsing"
 )
 
+// ConvertCode Convert the code
+//
+// Returns 0 if the code was converted successfully, 1 otherwise
 func ConvertCode() int {
 	code := GetCode()
 

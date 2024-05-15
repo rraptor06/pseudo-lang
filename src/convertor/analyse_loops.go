@@ -1,3 +1,4 @@
+// Package convertor: The package containing the convertor functions
 package convertor
 
 import (
@@ -7,6 +8,13 @@ import (
 	"strings"
 )
 
+// analyseWhile Analyse a while loop
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseWhile(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 

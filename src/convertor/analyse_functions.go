@@ -1,3 +1,4 @@
+// Package convertor: The package containing the convertor functions
 package convertor
 
 import (
@@ -7,6 +8,13 @@ import (
 	"strings"
 )
 
+// analyseFunctionContent Analyse the content of a function and convert it
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns 0 if the content of the function was analysed successfully, 1 otherwise
 func analyseReturn(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 

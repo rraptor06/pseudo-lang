@@ -1,3 +1,4 @@
+// Package convertor: The package containing the convertor functions
 package convertor
 
 import (
@@ -7,7 +8,12 @@ import (
 	"strings"
 )
 
-func getReferencementNumber(line string) int {
+// getReferenceNumber Get the number of references in a string
+//
+/* line: The line to analyse */
+//
+// Returns the number of references
+func getReferenceNumber(line string) int {
 	number := 0
 
 	for _, char := range line {
@@ -21,6 +27,12 @@ func getReferencementNumber(line string) int {
 	return number
 }
 
+// checkEntier Check if a line is an integer
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+//
+// Returns true if the line is an integer, false otherwise
 func checkEntier(function *FunctionStruct, line string) bool {
 	variableName := ""
 	end := 0
@@ -48,17 +60,23 @@ func checkEntier(function *FunctionStruct, line string) bool {
 		variableName += string(char)
 		end = 1
 	}
-	value := getReferencementNumber(variableName)
+	value := getReferenceNumber(variableName)
 	variableName = strings.ReplaceAll(variableName, "&", "")
 	variableName = strings.ReplaceAll(variableName, "*", "")
 	for _, variable := range function.LocalVars {
-		if variable.Name == variableName && (variable.VariableType == "int " || value == getReferencementNumber(variable.VariableType)) {
+		if variable.Name == variableName && (variable.VariableType == "int " || value == getReferenceNumber(variable.VariableType)) {
 			return true
 		}
 	}
 	return false
 }
 
+// checkDecimal Check if a line is a decimal
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+//
+// Returns true if the line is a decimal, false otherwise
 func checkDecimal(function *FunctionStruct, line string) bool {
 	variableName := ""
 	end := 0
@@ -86,11 +104,11 @@ func checkDecimal(function *FunctionStruct, line string) bool {
 		variableName += string(char)
 		end = 1
 	}
-	value := getReferencementNumber(variableName)
+	value := getReferenceNumber(variableName)
 	variableName = strings.ReplaceAll(variableName, "&", "")
 	variableName = strings.ReplaceAll(variableName, "*", "")
 	for _, variable := range function.LocalVars {
-		if variable.Name == variableName && (variable.VariableType == "double " || value == getReferencementNumber(variable.VariableType)) {
+		if variable.Name == variableName && (variable.VariableType == "double " || value == getReferenceNumber(variable.VariableType)) {
 			return true
 		}
 	}
@@ -120,6 +138,12 @@ func checkTexte(function *FunctionStruct, line string) bool {
 	return true
 }
 
+// checkVoid Check if a line is a void
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+//
+// Returns true if the line is a void, false otherwise
 func checkVoid(function *FunctionStruct, line string) bool {
 	variableName := ""
 	end := 0
@@ -147,6 +171,13 @@ func checkVoid(function *FunctionStruct, line string) bool {
 	return false
 }
 
+// analyseAfficher Analyse the "afficher" builtin
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseAfficher(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "my_printf(\""
 	var variableList []string
@@ -189,14 +220,35 @@ func analyseAfficher(function *FunctionStruct, line string, indentationList *[]s
 	return newLine
 }
 
+// analyseEntier Analyse the "entier" builtin
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseEntier(function *FunctionStruct, line string, indentationList *[]string) string {
 	return ""
 }
 
+// analyseDecimal Analyse the "decimal" builtin
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseDecimal(function *FunctionStruct, line string, indentationList *[]string) string {
 	return ""
 }
 
+// analyseTexte Analyse the "texte" builtin
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseTexte(function *FunctionStruct, line string, indentationList *[]string) string {
 	return ""
 }

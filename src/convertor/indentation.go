@@ -1,3 +1,4 @@
+// Package convertor: The package containing the convertor functions
 package convertor
 
 import (
@@ -30,6 +31,11 @@ func IsIndented(line string) bool {
 	return true
 }
 
+// RemoveIndentation Remove the indentation of a line
+//
+/* line: The line to remove the indentation */
+//
+// Returns the line without the indentation
 func RemoveIndentation(line string) string {
 	index := 0
 	spaces := 0
@@ -51,6 +57,11 @@ func RemoveIndentation(line string) string {
 	return line[index:]
 }
 
+// InvalidIndentation Check if the indentation of a line is invalid
+//
+/* line: The line to check */
+//
+// Returns true if the indentation is invalid, false otherwise
 func InvalidIndentation(line string) bool {
 	space := 0
 
@@ -73,6 +84,11 @@ func InvalidIndentation(line string) bool {
 	return false
 }
 
+// CheckIndentation Check the indentation of a code
+//
+/* code: The code to check */
+//
+// Returns 0 if the indentation is correct, 1 otherwise
 func CheckIndentation(code *CodeStruct) int {
 	for _, function := range code.FunctionsList {
 		for _, line := range function.Content {

@@ -1,16 +1,3 @@
-afficher("Hello, World!\n")
-
-fonction:additionner(entier a, entier b) -> entier
-    afficher(a + " + " + b + " = ")
-    retourner: a + b
-
-entier: a <- 5
-entier: b <- 3
-entier: result <- additionner(a, b)
-afficher(result + "\n")
-
-
-
 entier:     test    <-    1
 afficher("Bonjour, je suis le test " + test + "\n")
 affiche_test((adresse)test)
@@ -21,4 +8,10 @@ fonction: affiche_test((adresse)entier nb_test)
         (valeur)nb_test <- (valeur)nb_test + 1
         afficher("Bonjour, je suis le test " + (valeur)nb_test + "\n")
         a <- 0
+    si: (valeur)nb_test == 5
+        afficher("jadore la programmation")
     retourner:
+
+
+(valeur)vide: texte <- "test"
+my_printf("Voici un %s\n", texte)

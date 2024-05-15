@@ -1,3 +1,4 @@
+// Package convertor: The package containing the convertor functions
 package convertor
 
 import (
@@ -7,11 +8,18 @@ import (
 	"strings"
 )
 
+// Instructions The structure containing the properties of an instruction
 type Instructions struct {
 	Name     string
 	Function func(*FunctionStruct, string, *[]string) string
 }
 
+// analyseFunctionContent Analyse the content of a function and convert it
+//
+/* instructionsList: The list of instructions */
+/* function: The function to analyse */
+//
+// Returns 0 if the content of the function was analysed successfully, 1 otherwise
 func analyseFunctionContent(instructionsList []*Instructions, function *FunctionStruct) int {
 	var newLine string
 	var indentationList []string
@@ -27,7 +35,7 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 			if strings.Contains(line, instruction.Name) {
 				newLine = instruction.Function(function, line, &indentationList)
 				if newLine == "" {
-					//return 1
+					return 1
 				}
 				function.ConvertedContent = append(function.ConvertedContent, newLine)
 				added = true
@@ -37,7 +45,7 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 		if added == false && strings.Contains(line, "<-") {
 			newLine = analyseVariable(function, line, &indentationList)
 			if newLine == "" {
-				//return 1
+				return 1
 			}
 			function.ConvertedContent = append(function.ConvertedContent, newLine)
 			added = true
@@ -45,19 +53,24 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 		if added == false && strings.Contains(line, "(") {
 			newLine = analyseFunction(function, line, &indentationList)
 			if newLine == "" {
-				//return 1
+				return 1
 			}
 			function.ConvertedContent = append(function.ConvertedContent, newLine)
 			added = true
 		}
 		if added == false {
 			fmt.Fprintf(os.Stderr, "%sERROR: Can't convert the line \"%s\" !\n%s", constant.ErrorColor, line, constant.ResetColor)
-			//return 1
+			return 1
 		}
 	}
 	return 0
 }
 
+// analyseCode Analyse the code of each function and convert it
+//
+/* code: The code of the program */
+//
+// Returns 0 if the code was analysed successfully, 1 otherwise
 func analyseCode(code *CodeStruct) int {
 	var instructionsList []*Instructions = []*Instructions{
 		&Instructions{
@@ -88,11 +101,11 @@ func analyseCode(code *CodeStruct) int {
 
 	for _, function := range code.FunctionsList {
 		if analyseFunctionContent(instructionsList, function) != 0 {
-			//return 1
+			return 1
 		}
 	}
 	if analyseFunctionContent(instructionsList, code.MainFunction) != 0 {
-		//return 1
+		return 1
 	}
 	return 0
 }

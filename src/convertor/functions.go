@@ -1,3 +1,4 @@
+// Package convertor: The package containing the convertor functions
 package convertor
 
 import (
@@ -9,6 +10,11 @@ import (
 	"unicode"
 )
 
+// GetFunctionName Get the name of a function
+//
+/* line: The line to check */
+//
+// Returns the name of the function
 func GetFunctionName(line string) string {
 	var name string
 	state := 0
@@ -35,6 +41,11 @@ func GetFunctionName(line string) string {
 	return name
 }
 
+// strToArray Convert a string to an array
+//
+/* str: The string to convert */
+//
+// Returns the array
 func strToArray(str string) []string {
 	separator := func(c rune) bool {
 		return unicode.IsSpace(c)
@@ -43,6 +54,12 @@ func strToArray(str string) []string {
 	return strings.FieldsFunc(str, separator)
 }
 
+// strToArrayInhibitors Convert a string to an array with inhibitors
+//
+/* str: The string to convert */
+/* separators: The separators */
+//
+// Returns the array
 func strToArrayInhibitors(str string, separators string) []string {
 	var array []string
 	newStr := ""
@@ -78,6 +95,11 @@ func strToArrayInhibitors(str string, separators string) []string {
 	return array
 }
 
+// GetFunctionArgs Get the arguments of a function
+//
+/* line: The line to check */
+//
+// Returns the list of arguments,
 func GetFunctionArgs(line string) ([]string, []string, int) {
 	var argsList []string
 	var argsNamesList []string
@@ -106,6 +128,11 @@ func GetFunctionArgs(line string) ([]string, []string, int) {
 	return argsList, argsNamesList, 0
 }
 
+// GetReturnType Get the return type of a function
+//
+/* line: The line to check */
+//
+// Returns the return type
 func GetReturnType(line string) string {
 	index := regexp.MustCompile(`->`).FindStringIndex(line)
 
@@ -115,6 +142,11 @@ func GetReturnType(line string) string {
 	return GetVariablesType(line[index[1]:], false)
 }
 
+// GetNewFunction Get and create a new function
+//
+/* line: The line to check */
+//
+// Returns the new function
 func GetNewFunction(line string) *FunctionStruct {
 	var NewFunction *FunctionStruct
 	functionName := GetFunctionName(line)
@@ -163,6 +195,11 @@ func GetNewFunction(line string) *FunctionStruct {
 	return NewFunction
 }
 
+// GetAllFunctions Get all the functions in the code
+//
+/* code: The code of the program */
+//
+// Returns 0 if all the functions were added successfully, 1 otherwise
 func GetAllFunctions(code *CodeStruct) int {
 	var NewFunction *FunctionStruct
 

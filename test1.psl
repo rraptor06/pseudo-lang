@@ -1,0 +1,10 @@
+afficher("Hello, World!\n")
+
+fonction:additionner(entier a, entier b) -> entier
+    afficher(a + " + " + b + " = ")
+    retourner: a + b
+
+entier: a <- 5
+entier: b <- 3
+entier: result <- additionner(a, b)
+afficher(result + "\n")

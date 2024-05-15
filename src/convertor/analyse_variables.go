@@ -1,3 +1,4 @@
+// Package convertor: The package containing the convertor functions
 package convertor
 
 import (
@@ -7,6 +8,13 @@ import (
 	"strings"
 )
 
+// analyseInitVariable Analyse the initialization of a variable
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseInitVariable(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
@@ -77,6 +85,13 @@ func analyseInitVariable(function *FunctionStruct, line string, indentationList 
 	return newLine
 }
 
+// analyseVariable Analyse a variable
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseVariable(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 

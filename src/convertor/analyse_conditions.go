@@ -1,3 +1,4 @@
+// Package convertor: The package containing the convertor functions
 package convertor
 
 import (
@@ -7,6 +8,13 @@ import (
 	"strings"
 )
 
+// analyseIf Analyse an else if condition
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseElseIf(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
@@ -62,6 +70,13 @@ func analyseElseIf(function *FunctionStruct, line string, indentationList *[]str
 	return newLine
 }
 
+// analyseIf Analyse an if condition
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseIf(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
@@ -110,6 +125,13 @@ func analyseIf(function *FunctionStruct, line string, indentationList *[]string)
 	return newLine
 }
 
+// analyseElse Analyse an else condition
+//
+/* function: The function to analyse */
+/* line: The line to analyse */
+/* indentationList: The list of indentations */
+//
+// Returns the new line
 func analyseElse(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
