@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func analyseElseIf(line string, indentationList *[]string) string {
+func analyseElseIf(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
 	indentation := 0
@@ -62,7 +62,7 @@ func analyseElseIf(line string, indentationList *[]string) string {
 	return newLine
 }
 
-func analyseIf(line string, indentationList *[]string) string {
+func analyseIf(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
 	indentation := 0
@@ -110,7 +110,7 @@ func analyseIf(line string, indentationList *[]string) string {
 	return newLine
 }
 
-func analyseElse(line string, indentationList *[]string) string {
+func analyseElse(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
 	indentation := 0

@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func analyseInitVariable(line string, indentationList *[]string) string {
+func analyseInitVariable(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
 	indentation := 0

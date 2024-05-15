@@ -43,6 +43,41 @@ func strToArray(str string) []string {
 	return strings.FieldsFunc(str, separator)
 }
 
+func strToArrayInhibitors(str string, separators string) []string {
+	var array []string
+	newStr := ""
+	find := false
+	inhibitor := 0
+
+	for _, char := range str {
+		find = false
+		if inhibitor == 0 {
+			for _, separator := range separators {
+				if char == separator {
+					if newStr != "" {
+						array = append(array, newStr)
+						newStr = ""
+					}
+					find = true
+					break
+				}
+			}
+		}
+		if !find {
+			if inhibitor != 0 && char == int32(inhibitor) {
+				inhibitor = 0
+			} else if inhibitor == 0 && (char == '"' || char == '\'') {
+				inhibitor = int(char)
+			}
+			newStr += string(char)
+		}
+	}
+	if newStr != "" {
+		array = append(array, newStr)
+	}
+	return array
+}
+
 func GetFunctionArgs(line string) ([]string, []string, int) {
 	var argsList []string
 	var argsNamesList []string

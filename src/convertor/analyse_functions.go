@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func analyseReturn(line string, indentationList *[]string) string {
+func analyseReturn(function *FunctionStruct, line string, indentationList *[]string) string {
 	newLine := "\t"
 
 	indentation := 0
@@ -36,8 +36,8 @@ func analyseReturn(line string, indentationList *[]string) string {
 		newLine += "\t"
 		index++
 	}
-	line = strings.ReplaceAll(line, "(address)", "&")
-	line = strings.ReplaceAll(line, "(value)", "")
+	line = strings.ReplaceAll(line, "(adresse)", "&")
+	line = strings.ReplaceAll(line, "(valeur)", "*")
 	index = 10
 	for _, char := range line[index:] {
 		if char != ' ' && char != '\t' {
@@ -58,16 +58,24 @@ func analyseReturn(line string, indentationList *[]string) string {
 	return newLine
 }
 
-func analyseBuiltinFunction(function *FunctionStruct, line string, indentationList *[]string) string {
-	return ""
-}
-
 func analyseFunction(function *FunctionStruct, line string, indentationList *[]string) string {
-	builtinList := []string{
-		"afficher",
-		"entier",
-		"decimal",
-		"texte",
+	var builtinsList []*Instructions = []*Instructions{
+		&Instructions{
+			Name:     "afficher",
+			Function: analyseAfficher,
+		},
+		&Instructions{
+			Name:     "entier",
+			Function: analyseEntier,
+		},
+		&Instructions{
+			Name:     "decimal",
+			Function: analyseDecimal,
+		},
+		&Instructions{
+			Name:     "texte",
+			Function: analyseTexte,
+		},
 	}
 	newLine := "\t"
 
@@ -94,10 +102,14 @@ func analyseFunction(function *FunctionStruct, line string, indentationList *[]s
 		nb++
 	}
 	line = strings.ReplaceAll(line, "(adresse)", "&")
-	line = strings.ReplaceAll(line, "(value)", "")
-	for _, builtin := range builtinList {
-		if strings.HasPrefix(line, builtin+"(") {
-			return analyseBuiltinFunction(function, line, indentationList)
+	line = strings.ReplaceAll(line, "(valeur)", "*")
+	for _, instruction := range builtinsList {
+		if strings.HasPrefix(line, instruction.Name+"(") {
+			newLine += instruction.Function(function, line, indentationList)
+			if newLine == "" {
+				return ""
+			}
+			return newLine
 		}
 	}
 	newLine += line + ";"

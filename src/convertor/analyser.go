@@ -9,7 +9,7 @@ import (
 
 type Instructions struct {
 	Name     string
-	Function func(string, *[]string) string
+	Function func(*FunctionStruct, string, *[]string) string
 }
 
 func analyseFunctionContent(instructionsList []*Instructions, function *FunctionStruct) int {
@@ -25,7 +25,7 @@ func analyseFunctionContent(instructionsList []*Instructions, function *Function
 		}
 		for _, instruction := range instructionsList {
 			if strings.Contains(line, instruction.Name) {
-				newLine = instruction.Function(line, &indentationList)
+				newLine = instruction.Function(function, line, &indentationList)
 				if newLine == "" {
 					//return 1
 				}
